@@ -6,15 +6,13 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, smr_base,
-  smr_selector, SynEdit, SynHighlighterPas, StdCtrls, ExtCtrls, ComCtrls;
+  smr_selector,smr_stop, SynEdit, SynHighlighterPas, StdCtrls, ExtCtrls, ComCtrls;
 
 type
 
-  { TForm1 }
+  { TRecorder }
 
-  TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
+  TRecorder = class(TForm)
     ImageList1: TImageList;
     SynEdit1: TSynEdit;
     SynPasSyn1: TSynPasSyn;
@@ -29,17 +27,19 @@ type
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure ToolButton3Click(Sender: TObject);
+    procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure ToolButton5Click(Sender: TObject);
   private
     { private declarations }
   public
+    procedure StopRecording;
     { public declarations }
   end;
 
 var
-  Form1: TForm1;
+  Recorder: TRecorder;
   SmbHook: THook;
   Select: TMWindowSelector;
 
@@ -47,48 +47,66 @@ implementation
   uses smr_utils;
 {$R *.lfm}
 
-{ TForm1 }
+{ TRecorder }
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TRecorder.FormCreate(Sender: TObject);
 begin
   SmbHook:=THook.Create;
   Select:=TMWindowSelector.Create;
   Self.Caption:='Macros recorder for Simba v 0.1 for'+{$IFDEF Windows}'[WIN]'{$ELSE}'[LIN]'{$ENDIF};
 end;
 
-procedure TForm1.Timer1Timer(Sender: TObject);
+procedure TRecorder.Timer1Timer(Sender: TObject);
 begin
 
 end;
 
-procedure TForm1.ToolButton3Click(Sender: TObject);
+procedure TRecorder.ToolButton1Click(Sender: TObject);
 begin
-
+  Application.Terminate;
 end;
 
-procedure TForm1.ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
+procedure TRecorder.ToolButton3MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   SmbHook.WinCaption:=GetWindowCaption(Select.Drag);
 end;
 
-
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TRecorder.ToolButton5Click(Sender: TObject);
 begin
-  SmbHook.StartCatch
+   Self.Hide;
+   SmbHook.StartCatch;
+   StopForm.Show;
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TRecorder.StopRecording;
 var
   st: TStringList;
 begin
   SmbHook.StopCatch;
+  StopForm.Hide;
+  Self.Show;
   st:=TStringList.Create;
   smbHook.Delete(smbHook.Count-1);
+  sleep(100);
   smbHook.Delete(smbHook.Count-1);
   SmbHook.GenerateScript(st,0);
   SynEdit1.Text:=st.Text;
 end;
+
+
+procedure TRecorder.Button1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TRecorder.Button2Click(Sender: TObject);
+begin
+
+end;
+
+
+
 
 end.
 

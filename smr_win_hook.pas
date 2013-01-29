@@ -52,6 +52,23 @@ type
  mPT: TPoint;
 implementation
 
+function GetCharFromVirtualKey(Key: Word): string;
+ var
+    keyboardState: TKeyboardState;
+    asciiResult: Integer;
+ begin
+    GetKeyboardState(keyboardState) ;
+
+    SetLength(Result, 2) ;
+    asciiResult := ToAscii(key, MapVirtualKey(key, 0), keyboardState, @Result[1], 0) ;
+    case asciiResult of
+      0: Result := '';
+      1: SetLength(Result, 1) ;
+      2:;
+      else
+        Result := '';
+    end;
+ end;
 procedure Sethook;
 const
   WH_KEYBOARD_LL = 13;
@@ -105,7 +122,7 @@ begin
       oHookItem:=Hooks.AddItem;
       oHookItem.ItemType:=false;
       oHookItem.KeyCode:=iVKey;
-      oHookItem.VirtualKey:=sVKey;
+      oHookItem.VirtualKey:=GetCharFromVirtualKey(iVKey);
       oHookItem.PressedTime:=PressedTime;
     end;
 end;

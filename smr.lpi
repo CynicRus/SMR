@@ -30,15 +30,18 @@
         <FormatVersion Value="1"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="SynEdit"/>
+        <PackageName Value="GR32_L"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="SynEdit"/>
       </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+      </Item3>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="smr.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -47,7 +50,7 @@
       <Unit1>
         <Filename Value="smr_main.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="Recorder"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="smr_main"/>
@@ -82,6 +85,13 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="smr_selector"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="smr_stop.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="StopForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="smr_stop"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

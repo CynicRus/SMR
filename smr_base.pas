@@ -93,7 +93,7 @@ begin
       end
       else
       begin
-       // st.Add('//Key = '+hItem.VirtualKey);
+        st.Add('//Key = '+hItem.VirtualKey);
         st.Add(GenSpaces(2)+'KeyDown('+IntToStr(hItem.KeyCode)+');');
        // st.Add(GenSpaces(2)+'Wait(RandomRange('+IntToStr(hItem.PressedTime-10)+','+IntToStr(hItem.PressedTime+15)+'));');
         st.Add(GenSpaces(2)+'KeyUp('+IntToStr(hItem.KeyCode)+');');

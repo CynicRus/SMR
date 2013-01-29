@@ -1,31 +1,13 @@
-object Form1: TForm1
-  Left = 373
-  Height = 445
-  Top = 395
+object Recorder: TRecorder
+  Left = 524
+  Height = 407
+  Top = 326
   Width = 529
-  Caption = 'Form1'
-  ClientHeight = 445
+  Caption = 'Recorder'
+  ClientHeight = 407
   ClientWidth = 529
   OnCreate = FormCreate
   LCLVersion = '1.0.4.0'
-  object Button1: TButton
-    Left = 88
-    Height = 25
-    Top = 416
-    Width = 75
-    Caption = 'Button1'
-    OnClick = Button1Click
-    TabOrder = 0
-  end
-  object Button2: TButton
-    Left = 376
-    Height = 25
-    Top = 416
-    Width = 75
-    Caption = 'Button2'
-    OnClick = Button2Click
-    TabOrder = 1
-  end
   object ToolBar1: TToolBar
     Left = 0
     Height = 26
@@ -33,12 +15,13 @@ object Form1: TForm1
     Width = 529
     Caption = 'ToolBar1'
     Images = ImageList1
-    TabOrder = 2
+    TabOrder = 0
     object ToolButton1: TToolButton
       Left = 1
       Top = 2
       Caption = 'ToolButton1'
       ImageIndex = 0
+      OnClick = ToolButton1Click
     end
     object ToolButton2: TToolButton
       Left = 24
@@ -66,20 +49,22 @@ object Form1: TForm1
       Top = 2
       Caption = 'ToolButton5'
       ImageIndex = 2
+      OnClick = ToolButton5Click
     end
   end
   inline SynEdit1: TSynEdit
     Left = 0
-    Height = 384
-    Top = 24
+    Height = 381
+    Top = 26
     Width = 529
+    Align = alClient
     Font.Height = -13
     Font.Name = 'Courier New'
     Font.Pitch = fpFixed
     Font.Quality = fqNonAntialiased
     ParentColor = False
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 1
     Gutter.Width = 57
     Gutter.MouseActions = <>
     RightGutter.Width = 0
